@@ -1,5 +1,6 @@
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
+const cors = require('cors'); // ← 追加
 require('dotenv').config();
 
 const app = express();
@@ -10,6 +11,7 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
+app.use(cors()); // ← 追加
 app.use(express.json());
 
 app.post('/location', async (req, res) => {
@@ -31,7 +33,6 @@ app.post('/location', async (req, res) => {
   res.status(200).send('Location saved');
 });
 
-// ✅ ←ここが漏れてた！
 app.get('/', (req, res) => {
   res.send('TabitomoWiFi Location API is running.');
 });
