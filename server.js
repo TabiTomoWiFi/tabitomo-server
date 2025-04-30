@@ -3,7 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -31,9 +31,11 @@ app.post('/location', async (req, res) => {
   res.status(200).send('Location saved');
 });
 
+// ✅ ←ここが漏れてた！
 app.get('/', (req, res) => {
   res.send('TabitomoWiFi Location API is running.');
-const PORT = process.env.PORT || 3000;
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
