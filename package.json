@@ -1,14 +1,16 @@
 {
   "name": "tabitomo-server",
   "version": "1.0.0",
-  "description": "TabitomoWiFi backend server to store location info in Supabase",
+  "description": "Server for TabitomoWiFi PoC",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "@supabase/supabase-js": "^2.39.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
   }
 }
