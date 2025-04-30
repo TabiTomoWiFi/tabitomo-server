@@ -1,6 +1,6 @@
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
-const cors = require('cors'); // ← 追加
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -11,18 +11,18 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-app.use(cors()); // ← 追加
+app.use(cors());
 app.use(express.json());
 
 app.post('/location', async (req, res) => {
-  const { latitude, longitude, timestamp } = req.body;
+  const { latitude, longitude, timestamp, nationality, gender, age } = req.body;
 
   if (!latitude || !longitude) {
     return res.status(400).send('Missing latitude or longitude');
   }
 
   const { error } = await supabase.from('location').insert([
-    { latitude, longitude, timestamp }
+    { latitude, longitude, timestamp, nationality, gender, age }
   ]);
 
   if (error) {
