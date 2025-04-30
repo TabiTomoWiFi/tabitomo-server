@@ -33,8 +33,7 @@ app.post('/location', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('TabitomoWiFi Location API is running.');
-});
-
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
