@@ -6,14 +6,16 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Supabaseクライアントの初期化（※ service_role を使用）
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 app.use(cors());
 app.use(express.json());
 
+// POST /location → Supabaseにデータ挿入
 app.post('/location', async (req, res) => {
   const { latitude, longitude, timestamp, nationality, gender, age } = req.body;
 
@@ -33,6 +35,7 @@ app.post('/location', async (req, res) => {
   res.status(200).send('Location saved');
 });
 
+// GET / → サーバの疎通確認用
 app.get('/', (req, res) => {
   res.send('TabitomoWiFi Location API is running.');
 });
